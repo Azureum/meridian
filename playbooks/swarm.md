@@ -8,7 +8,7 @@ Use this when a job is more than one chunk. If it is one chunk, one agent does i
 2. **Split what has no dependencies.** Work that does not depend on other work goes to separate agents and runs at the same time: research, tests, documents, independent parts of the change. Two chunks can run together when neither needs the other's result and they do not change the same files.
 3. **Keep dependent steps in one agent.** Steps that build on each other stay together. Splitting them only adds handovers.
 4. **Attach the right agent to each chunk.** See below. Review and verification go to a separate agent with no view of the others' reasoning.
-5. **Give each agent a complete brief.** Every agent starts cold and knows only what its brief says: the outcome wanted, its own chunk and the files it owns, what done looks like, what it may decide, the urgency, and who owns the code. An agent that is not told the code is its own will add to it and will not clean it.
+5. **Give each agent a complete brief.** Every agent starts cold and knows only what its brief says: the outcome wanted, its own chunk, the files it owns and the files it needs to read, what done looks like, what it may decide, the urgency, and who owns the code. An agent that is not told the code is its own will add to it and will not clean it.
 6. **Bring the results together.** Collect what the swarm produced, check each piece against its brief, and put the work through every layer.
 
 Every agent in the swarm follows Meridian. Splitting the work up does not let any piece skip a layer.
@@ -21,6 +21,8 @@ Every extra agent has a cost before it does anything useful: it starts cold, it 
 - **Use the fewest agents that get that speed.** If three agents finish as soon as eight would, use three.
 - **Make chunks big enough to be worth a cold start.** A chunk that would take the lead a few minutes is cheaper done by the lead than explained to someone else.
 - **Read once.** Whatever every chunk needs to know, the lead finds out once and puts in the briefs. Agents that each rediscover the same files are paying for the same reading several times.
+- **Each agent reads only what its chunk needs.** The brief names the files to read and says that is the whole list. An agent that reads around fills its context with things it will not use, and works worse on the thing it was given.
+- **The lead does not read what it has handed out.** Once a chunk belongs to another agent, the lead reads that agent's short result, not the files behind it.
 - **Give each file one owner.** Two agents changing the same file produce a merge the lead has to untangle, which costs more than doing the two changes in turn.
 - **Cut the hand-backs short.** An agent returns its result and what the lead needs to act on it, not a record of everything it looked at.
 - **Stop when splitting stops helping.** If writing the briefs and merging the results would take longer than the work, do not split.

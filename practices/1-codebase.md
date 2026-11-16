@@ -123,6 +123,8 @@ When you change a file, delete the comments in the part you touch that this sect
 
 Context is spent on reading. A codebase that is cheap to navigate leaves more of it for thinking.
 
+An agent reads only what its job needs. The map, the feature map and the feature files exist so that it can go straight to those files and open nothing else. Reading around feels thorough and makes the work worse: every file opened stays in the agent’s context for the rest of the job.
+
 - Name files and folders for what a reader searches for.
 - Keep one area in one folder.
 

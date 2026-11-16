@@ -10,6 +10,8 @@ If the repository has no `SYSTEM.md` yet, it has not been set up: do [`SETUP.md`
 2. The repository's `CODEBASE.md`: where things are and what each API route does.
 3. The file in `features/` for the feature you are changing.
 
+Then open only the files your job needs. Use the map to go straight to them. Everything you read stays in your context and crowds out the work, so do not read around, and do not open a practice page or playbook until you are at the step it covers.
+
 ## The model
 
 Workflow sits on top: how what the user types becomes finished work. Under it, five layers keep that work trustworthy. The earlier a layer is in this list, the more it must carry.
