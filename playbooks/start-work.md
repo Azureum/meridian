@@ -32,6 +32,8 @@ The confirmed prompt becomes a written job that you can test yourself against. [
 
 Anything not on the escalate list, you decide. An agent that asks about what it could have decided is spending the user's time to protect itself.
 
+**Write the escalate list as exact actions, not categories.** "Dropping a table in the production database" is an action. "Anything risky" and "contacting anyone outside" are categories, and an agent given a category holds back routine work that happens to fall inside it. Each line names one thing a person could see being done, and where it applies.
+
 ## 3. Preflight
 
 Before any agent runs, a script checks that everything the job needs is in place. It is a script, not an agent, because it has to be cheap and give the same answer every time. The run does not start until it passes.

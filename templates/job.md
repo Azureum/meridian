@@ -28,9 +28,11 @@ Anything that can be undone: naming, structure, how to build it. Decide, note it
 
 ## Must escalate
 
-- Deleting data
-- Spending money
-- Anything public
+Exact actions, each with where it applies. Not categories.
+
+- Deleting rows or tables in the production database
+- Any purchase or paid plan change
+- Publishing or sending anything to people outside the team
 
 ## Answers
 
