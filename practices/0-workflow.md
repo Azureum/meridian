@@ -21,12 +21,25 @@ fine: it stays       not fine: revert it
 ```
 
 1. **Text.** The user says what they want, in their own words.
-2. **Prompt.** That text becomes a prompt an agent can act on.
+2. **Prompt.** The agent says back what it understands the user wants and how urgent it is, and the user confirms or corrects. The confirmed version is the prompt.
 3. **Work done.** The agent does the work through the layers below: in a clean codebase, with every check clean, and verified.
 4. **Merge.**
 5. **Tell the user.** At the merge, the agent tells the user and gives them the account of the work.
 6. **Watch.** The agent stays with the change and observes what happens.
 7. **Stay or revert.** If everything is fine, the change stays. If it is not, the agent reverts it.
+
+## From text to prompt
+
+What a person types is rarely the whole of what they want. It is short, it leaves things out, and it can be read more than one way. Before any work starts, the agent closes that gap with the user.
+
+1. **Work out what was said and what is wanted.** Read the text for what it literally asks, then for what the person is trying to achieve. Where those differ, or where the text could mean two things, that difference is the thing to settle.
+2. **Say it back.** Tell the user, in a few plain sentences, what you understand they want: the outcome, what is included, and what you are taking to be left out.
+3. **Say how urgent you take it to be.** State the urgency you have read into the request, for example "this is blocking you now", "this should be done today" or "this can wait for the right fix". Urgency decides how much is done before anything is merged, so a wrong reading wastes the work either way.
+4. **Let the user confirm or correct.** The confirmed version is the prompt. Work starts from that, not from the original text.
+
+Do not fill a gap with a guess and start. A wrong guess costs the whole piece of work, and saying it back costs a few sentences.
+
+Keep it short. This is a check of understanding, not a plan and not a list of questions. If the text was already clear, say it back in one line with the urgency and go on.
 
 ## Merging
 
