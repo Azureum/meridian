@@ -13,6 +13,20 @@ Use this when a job is more than one chunk. If it is one chunk, one agent does i
 
 Every agent in the swarm follows Meridian. Splitting the work up does not let any piece skip a layer.
 
+## Split efficiently
+
+Every extra agent has a cost before it does anything useful: it starts cold, it reads its way in, its brief has to be written, and its result has to be checked and merged. A split is worth making only when it saves more than that.
+
+- **Split to shorten the longest chain.** The work finishes when its longest run of dependent steps finishes. Adding agents to anything else makes the bill bigger and the finish no sooner. Find that chain first, then take everything off it that can run alongside.
+- **Use the fewest agents that get that speed.** If three agents finish as soon as eight would, use three.
+- **Make chunks big enough to be worth a cold start.** A chunk that would take the lead a few minutes is cheaper done by the lead than explained to someone else.
+- **Read once.** Whatever every chunk needs to know, the lead finds out once and puts in the briefs. Agents that each rediscover the same files are paying for the same reading several times.
+- **Give each file one owner.** Two agents changing the same file produce a merge the lead has to untangle, which costs more than doing the two changes in turn.
+- **Cut the hand-backs short.** An agent returns its result and what the lead needs to act on it, not a record of everything it looked at.
+- **Stop when splitting stops helping.** If writing the briefs and merging the results would take longer than the work, do not split.
+
+Before starting the swarm, the lead writes down the chunks, which run together, which wait, and how many agents that needs. If that plan does not finish sooner than one agent would, one agent does the work.
+
 ## Choosing the agent for a chunk
 
 Models come in tiers, from the most capable and most expensive down to the smallest and fastest. Match the tier to the chunk.
