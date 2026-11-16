@@ -1,6 +1,6 @@
 # Meridian (Pactory)
 
-How agents work in Pigeon Studios repositories: the rules, the reasoning behind them, and a checker that enforces what a machine can enforce.
+A guide for agents that works in any codebase. When Meridian is in a repository, agents working there use it as their guide, and the first agent to find it sets the repository up: see [`SETUP.md`](SETUP.md).
 
 ## The model
 
@@ -26,11 +26,12 @@ The width of a layer is how much of the work it should carry. Fix a problem at t
 
 | Path | What it is |
 | --- | --- |
+| [`SETUP.md`](SETUP.md) | What an agent does the first time it finds Meridian in a repository |
 | [`AGENTS.md`](AGENTS.md) | The rules, short enough to load in every session |
 | [`practices/`](practices/) | One page per layer: the reasoning and worked examples |
 | [`checks/scan.mjs`](checks/scan.mjs) | Counts the patterns the rules forbid, and can stop the counts from rising |
 | [`checks/map.mjs`](checks/map.mjs) | Keeps a project's `CODEBASE.md` true: named paths exist, covered folders are fully listed |
-| [`templates/`](templates/) | A starting `AGENTS.md` and `CODEBASE.md` for a project, and a pull request description |
+| [`templates/`](templates/) | Starting files for a project: `AGENTS.md`, `CODEBASE.md`, a feature file, and a pull request description |
 | [`CODEBASE.md`](CODEBASE.md) | Where things are in this repository |
 
 ## Using it in a project

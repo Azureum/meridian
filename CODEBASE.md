@@ -6,6 +6,7 @@ Where things are in this repository. Read this first.
 
 | Path | What is there |
 | --- | --- |
+| `SETUP.md` | What an agent does the first time it finds Meridian in a repository |
 | `AGENTS.md` | The rules every session loads |
 | `practices/1-codebase.md` | Why the code itself is the main instruction, and the band-aid catalogue |
 | `practices/2-static-analysis.md` | Turning rules into checks, and what makes a test worth having |
@@ -19,4 +20,5 @@ Where things are in this repository. Read this first.
 | `checks/baseline.json` | This repository's own counts, all zero |
 | `templates/AGENTS.md` | A starting guide for a project |
 | `templates/CODEBASE.md` | A starting map for a project |
+| `templates/feature.md` | A starting file for one feature |
 | `templates/pull-request.md` | A pull request description |

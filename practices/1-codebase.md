@@ -76,7 +76,7 @@ Context is spent on reading. A codebase that is cheap to navigate leaves more of
 
 ### The codebase file
 
-Every repository has a `CODEBASE.md` at its root. An agent reads it before anything else, so that it opens the three files its task needs and not thirty. It holds:
+A repository that uses Meridian has a `CODEBASE.md` at its root. An agent reads it before anything else, so that it opens the three files its task needs and not thirty. It holds:
 
 - **Where things are:** one line per top-level folder.
 - **Where each area starts:** the one or two files to open first for each part of the product.
@@ -87,3 +87,9 @@ Keep each entry to a line. The file is a map, and the detail lives in the code i
 It stays true because a check enforces it, not because people remember. [`checks/map.mjs`](../checks/map.mjs) fails when a path named in the file does not exist, and when a file in a folder the file claims to cover is not listed. A line such as `<!-- covers: api/*.js -->` makes that claim. Adding a route without adding its line turns the check red.
 
 [`templates/CODEBASE.md`](../templates/CODEBASE.md) is a starting point.
+
+### A file per feature
+
+Each feature has its own file in `features/`. It says what the feature is, what it is for, and how it is meant to behave, so that an agent can judge a change against the intent and not only against the code in front of it.
+
+It states what is true now. It does not record what was tried, what broke or how the feature got here; an agent that reads those takes them for the current design. [`templates/feature.md`](../templates/feature.md) is a starting point.

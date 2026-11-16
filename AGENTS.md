@@ -1,6 +1,8 @@
 # Rules for agents
 
-These rules apply to every Pigeon Studios repository. A repository's own `AGENTS.md` adds what is specific to it and never repeats these.
+When Meridian is in a repository, it is the guide for agents working there. The repository's own `AGENTS.md` adds what is specific to that project and never repeats these rules.
+
+If the repository has no `CODEBASE.md` yet, it has not been set up: do [`SETUP.md`](SETUP.md) first.
 
 ## The order of defence
 
@@ -43,10 +45,11 @@ The next agent has no memory of what was intended. It will treat whatever is in 
 
 **Finding your way**
 16. Keep files small enough to read whole. Split by what a reader looks for.
-17. Every repository has a `CODEBASE.md` that says where things are and what each API route does. Read it first. Update it in the same change that adds, moves or removes anything it names; a check fails when it is out of step.
+17. The repository has a `CODEBASE.md` that says where things are and what each API route does. Read it first. Update it in the same change that adds, moves or removes anything it names; a check fails when it is out of step.
+18. Each feature has its own file in `features/`: what it is, what it is for, how it is meant to behave. It states what is true now, never what was tried before. Read the feature's file before changing the feature, and update it in the same change.
 
 **Reporting**
-18. Say what you ran and what you did not. State an unverified claim as unverified.
-19. If you find a problem outside your task, report it. Do not silently work around it.
+19. Say what you ran and what you did not. State an unverified claim as unverified.
+20. If you find a problem outside your task, report it. Do not silently work around it.
 
 The reasoning and worked examples for each rule are in [`practices/`](practices/).

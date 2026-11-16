@@ -17,7 +17,7 @@ A rule that fails the first two tests is a note about a missing fix. Record it a
 - State what to do and the reason in a sentence each. A rule without its reason gets followed in the wrong cases and broken in the right ones.
 - Describe the present. No history.
 - Keep the whole file short enough to read in a minute or two. Every added rule makes each other rule less likely to be followed.
-- Put a rule where it applies. What is true for all repositories lives here; what is true for one lives in that repository; what is true for one folder lives in that folder.
+- Put a rule where it applies. What is true wherever Meridian is used lives here; what is true for one lives in that repository; what is true for one folder lives in that folder.
 
 ## What a repository's own guide holds
 
@@ -37,6 +37,6 @@ It does not hold a list of traps. A trap is a defect in the codebase; list it as
 
 ## Maps
 
-A map of the code is worth writing: it is the cheapest way for an agent to find what it needs. Every repository keeps one in `CODEBASE.md` (see [the codebase file](1-codebase.md#the-codebase-file)).
+A map of the code is worth writing: it is the cheapest way for an agent to find what it needs. A repository that uses Meridian keeps one in `CODEBASE.md` (see [the codebase file](1-codebase.md#the-codebase-file)).
 
 A map nobody checks is wrong within weeks, so the map is checked: the paths it names must exist, and the folders it covers must be fully listed. Write only what the check can hold you to, plus one plain line on what each thing is for.
