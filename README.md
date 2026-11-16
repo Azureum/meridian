@@ -33,6 +33,7 @@ The width of a layer is how much of the work it should carry. Fix a problem at t
 | [`practices/`](practices/) | One page for workflow and one per layer: the reasoning and worked examples |
 | [`playbooks/`](playbooks/) | Tasks an agent carries out on a repository, such as making its CI fast |
 | [`checks/scan.mjs`](checks/scan.mjs) | Counts the patterns the rules forbid, and can stop the counts from rising |
+| [`checks/preflight.mjs`](checks/preflight.mjs) | Before a run starts, checks everything the job needs and reports every gap as one list |
 | [`checks/map.mjs`](checks/map.mjs) | Keeps a project's `CODEBASE.md` true: named paths exist, covered folders are fully listed |
 | [`templates/`](templates/) | Starting files for a project: `AGENTS.md`, `CODEBASE.md`, a feature file, and a pull request description |
 | [`CODEBASE.md`](CODEBASE.md) | Where things are in this repository |

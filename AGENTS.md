@@ -6,7 +6,7 @@ If the repository has no `CODEBASE.md` yet, it has not been set up: do [`SETUP.m
 
 ## Workflow, then five layers
 
-Workflow sits on top: it is how agents are put to work. The user's text becomes a prompt, the prompt becomes work done, the work is merged, the user is told, and the agent watches the result. See [`practices/0-workflow.md`](practices/0-workflow.md).
+Workflow sits on top: it is how agents are put to work. The user's text is understood and confirmed, written as a job, checked by a preflight, done by a swarm, merged, reported to the user, and watched. See [`practices/0-workflow.md`](practices/0-workflow.md).
 
 Underneath it, good behaviour comes from five layers. The earlier a layer is in this list, the more of the work it must carry.
 
@@ -79,11 +79,16 @@ The next agent has no memory of what was intended. It will treat whatever is in 
 40. If you find a problem outside your task, report it. Do not silently work around it.
 
 **Workflow**
-41. Before starting, work out what the user said and what they actually want, then say it back to them with how urgent you take it to be. Start from what they confirm, not from a guess.
-42. From the confirmed prompt, decide what to do, break it into chunks that can run at the same time, and attach the right agent to each. Give every agent a brief that stands on its own.
-43. Work is finished when it has been through every layer, merged, and watched, not when the code is written.
-44. If the repository merges on its own, merge only work that is clean, verified and has its account written. If it waits for approval, wait.
-45. At the merge, tell the user and give them the account of the work.
-46. After the merge, watch. Revert the change if the checks fail on the main branch, the release breaks, errors appear where users are, or you use the product and find it broken. Tell the user at once when you revert.
+41. Before starting, work out what the user said and what they actually want. Say it back with how urgent you take it to be and every open question you have, in one batch. Start from what they confirm, not from a guess.
+42. Work from a written job: done as commands that must pass, the files you may touch, and what is out of scope. New ideas go on the follow-up list, not into this run.
+43. No run starts until the preflight script passes. It reports every gap to the user once, as one list.
+44. Decide alone anything that can be undone, and note it. Escalate only what the job's escalate list names, such as deleting data, spending money and public actions.
+45. Split work that has no dependencies across agents, attach the right agent to each chunk, and give each a complete brief. Keep dependent steps in one agent.
+46. Write progress and blockers to the run's checkpoint file at set points, so a stuck run is seen and a stopped one can resume.
+47. Work is finished when it has been through every layer, merged, and watched, not when the code is written.
+48. If the repository merges on its own, merge only work that is clean, verified and has its account written. If it waits for approval, wait.
+49. At the merge, tell the user and give them the account of the work.
+50. After the merge, watch. Revert the change if the checks fail on the main branch, the release breaks, errors appear where users are, or you use the product and find it broken. Tell the user at once when you revert.
+51. Record working time, waiting time and retries for each run. Where the time went on waiting, add a preflight check, an escalate rule or an up-front question.
 
 The reasoning and worked examples for each rule are in [`practices/`](practices/).
