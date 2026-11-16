@@ -28,7 +28,7 @@ The confirmed prompt becomes a written job that you can test yourself against. [
 ### Who decides what
 
 - **Decide alone** anything that can be undone, such as naming, structure and how to build it. Decide, note the decision in your account, and carry on.
-- **Escalate** only what the job's list names, such as deleting data, spending money, and anything public.
+- **Escalate** only what the job's list names, such as deleting production data, making a purchase, or publishing to people outside the team.
 
 Anything not on the escalate list, you decide. An agent that asks about what it could have decided is spending the user's time to protect itself.
 
