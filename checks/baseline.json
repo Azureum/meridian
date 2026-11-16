@@ -1,0 +1,12 @@
+{
+  "counts": {
+    "dated-comment": 0,
+    "history-comment": 0,
+    "stopgap-comment": 0,
+    "swallowed-error": 0,
+    "forced-style": 0,
+    "soft-check": 0,
+    "test-reads-source": 0,
+    "big-file": 0
+  }
+}
