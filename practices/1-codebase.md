@@ -2,6 +2,32 @@
 
 The codebase is the widest layer because it is the one thing every agent reads. An agent arrives with no history, loads some files, and infers from them what is normal. A clean file teaches good habits without a word of instruction. A file full of patches teaches patching.
 
+## Who owns the code
+
+An agent treats code very differently depending on whose it thinks it is.
+
+- **Told nothing, or told the code is someone else's,** it adds to what is there. It leaves the existing structure alone even when that means writing something a second time, and it reports problems it finds and leaves them.
+- **Told the code is its own,** it improves the structure as it works: it merges duplicated code into one place and fixes related problems without being asked.
+
+"Replace, never stack" and "one source of truth" only happen under the second. An agent that believes it is a guest in the codebase will stack.
+
+So each repository says who owns its code, in its own `AGENTS.md`, decided with the user at setup. Where agents are to keep the codebase clean, that file carries this sentence:
+
+> You are the owner and long-term maintainer of this codebase, and its design is up to you.
+
+### What ownership costs
+
+Ownership is not free, and the account of the work has to make up for it.
+
+- **More is written.** Expect noticeably more output for the same task.
+- **Changes nobody asked for.** Mostly new tests and documentation, and sometimes a change to how an existing feature behaves.
+- **Small changes go unmentioned.** An agent's closing summary tends to leave them out. List every change in the account, including the ones outside the request, and point the owner at the diff.
+- **A scope rule does not cancel it.** Adding "no unrelated clean-up" beside the ownership sentence still leaves the agent restructuring much of the time. If the user wants the code touched as little as possible, leave the sentence out.
+
+### Ownership is of structure, not of behaviour
+
+Owning the code means its shape is yours to improve. It does not mean what the product does is yours to change. A change to how a feature behaves needs a job that asks for it, and in a system whose `SYSTEM.md` puts accuracy or a complete record first, it needs the user.
+
 ## Band-aids
 
 A band-aid is a small local change that makes a symptom go away while the cause stays. It works today and costs every later reader, because the patch now looks like the intended design.

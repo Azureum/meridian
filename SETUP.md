@@ -33,7 +33,11 @@ Do these straight away. They add files and change no code.
 
 Ask the user whether this repository merges finished work on its own or waits for them to approve each merge. Record the answer in the repository's own `AGENTS.md`. [`playbooks/merge-and-watch.md`](playbooks/merge-and-watch.md) describes both.
 
-## 4. Ask about a clean-up
+## 4. Ask who owns the code
+
+Ask the user whether agents are to own and maintain this codebase, improving its structure as they work, or whether the user owns it and wants it changed as little as possible. Record the answer in the repository's own `AGENTS.md`. [`practices/1-codebase.md`](practices/1-codebase.md#who-owns-the-code) says what each choice leads to and what ownership costs.
+
+## 5. Ask about a clean-up
 
 Show the user what the scanner finds:
 
@@ -42,6 +46,8 @@ node checks/scan.mjs <repository>
 ```
 
 Then ask them whether they want the codebase cleaned up. Do not start a clean-up without a yes.
+
+A clean-up needs agents to own the code. If the user chose otherwise in step 4, say so before starting.
 
 Before a clean-up begins, tell the user to make sure the agent doing it is a capable one. A clean-up changes working code across many files, and a weak model will make it worse. If you are not sure you are that agent, say so.
 

@@ -4,6 +4,12 @@ Meridian is the guide here. This file holds only what is specific to this projec
 
 Read [`SYSTEM.md`](SYSTEM.md) first: what this system is and what matters most in it. Then [`CODEBASE.md`](CODEBASE.md): where everything is and what each API route does.
 
+## Who owns this code
+
+Either the line below, where agents are to keep the codebase clean, or "The user owns this code. Change as little as the job needs."
+
+> You are the owner and long-term maintainer of this codebase, and its design is up to you.
+
 ## How this repository merges
 
 Either "Finished work merges on its own" or "Every merge waits for approval", as the user chose at setup.
