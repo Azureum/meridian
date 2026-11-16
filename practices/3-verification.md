@@ -4,9 +4,40 @@ Static checks show the change is well formed. Verification shows it does what wa
 
 ## Two kinds
 
-**Formal** verification proves a property for every possible case, by reasoning about the code or a model of it. Nothing needs to run. It gives the strongest answer and costs the most, so it is kept for logic where one wrong case is serious.
+**Formal** verification proves a property for every possible case, by reasoning about a model of the design. The application does not need to run. Meridian does this with TLA+.
 
 **Empirical** verification runs the thing and observes what happens. It covers the cases that were tried, so its strength depends on how many and how varied those cases are.
+
+## Formal: a TLA+ specification, invariants first
+
+For logic that is verified formally, an agent writes a specification in TLA+ and has a model checker examine every state the design can reach.
+
+### Start with the invariants
+
+An invariant is something that must be true in every state, whatever has happened before. The agent raises these with the user first, in plain words, before any modelling detail:
+
+- A balance is never below zero.
+- An order is never paid twice.
+- Two workers never hold the same job.
+- The amount paid out never exceeds the amount received.
+
+This conversation is the most valuable part. Asking "what must always be true here?" surfaces disagreements and forgotten cases before a line of code exists. Do not start writing the model until the invariants are agreed.
+
+### Then the specification
+
+1. Describe the state: the few variables that matter.
+2. Describe how it starts.
+3. Describe each action that can change it, including the ones that happen at the same time or fail halfway.
+4. Write each agreed invariant into the specification.
+5. Run the model checker. It tries every ordering of the actions and reports any state that breaks an invariant, with the shortest sequence of steps that leads there.
+
+A violation is a flaw in the design. Fix the design and run it again. Do not weaken the invariant to make the checker pass, unless the invariant itself was wrong, and then agree the new one with the user.
+
+### What it does and does not prove
+
+- It proves the design, not the code. The code must then be written to match the specification, and changed together with it.
+- It covers the model at the size it was checked, for example three users and two orders. State those sizes when reporting the result.
+- Keep the specification in the repository beside the feature's file. The invariants also go in the feature's file under "What must always be true", so that every agent meets them, and they become assertions, tests and interface properties wherever the code can check them.
 
 ## User interfaces
 
@@ -24,7 +55,7 @@ The agent reports what it did and what happened, with a screenshot of anything i
 
 What makes it stronger than a scripted test is that nobody has to think of the path. It finds the sequences no one would have written a test for.
 
-**Properties.** A property is a statement that must hold whatever path is taken. Good ones come from the feature's own file: its "How it behaves" section is a list of properties waiting to be written. Typical shapes:
+**Properties.** A property is a statement that must hold whatever path is taken. Good ones come from the feature's own file: its "What must always be true" and "How it behaves" sections are lists of properties waiting to be written. Typical shapes:
 
 - **Always:** something is never allowed to happen. A count never goes below zero; no page shows a raw error.
 - **Eventually:** something must come to pass. After saving, the saved value shows; an error message goes away.

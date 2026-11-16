@@ -56,9 +56,11 @@ The next agent has no memory of what was intended. It will treat whatever is in 
 23. Passing checks is not the task. Show that the change does what was asked, by running it.
 24. Verify a user interface two ways: an agent uses it and reports what it saw, and Bombadil explores it against written properties.
 25. A violation Bombadil finds is a finding. Fix the interface, not the property.
+26. For formal verification, write a TLA+ specification. Start by agreeing the invariants with the user: the things that must always be true. Model nothing until they are agreed.
+27. A violation the model checker finds is a flaw in the design. Fix the design, not the invariant.
 
 **Reporting**
-26. Say what you ran and what you did not. State an unverified claim as unverified.
-27. If you find a problem outside your task, report it. Do not silently work around it.
+28. Say what you ran and what you did not. State an unverified claim as unverified.
+29. If you find a problem outside your task, report it. Do not silently work around it.
 
 The reasoning and worked examples for each rule are in [`practices/`](practices/).
