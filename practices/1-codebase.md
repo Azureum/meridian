@@ -45,6 +45,21 @@ When something a result depends on cannot be read, the result is "unknown". It i
 - Do not fall back to another calculation without saying so in the result itself.
 - A limit that cuts off a read is a failed read.
 
+## Ban what needs nuance
+
+Anything that takes judgment to use well will be used badly, by agents most of all. If the same thing keeps being misused, stop correcting each misuse and remove the choice.
+
+- Forbid it in product code with a lint rule.
+- Allow it only inside the one wrapper or framework function that uses it correctly, and have product code call that.
+
+The problem is then gone as a category. Nobody has to catch it in review again, and no agent has to remember a warning.
+
+## Folders carry meaning
+
+Where two parts of a system must not mix, put them in separate top-level folders with plain names, and forbid imports between them. A dependency check or lint rule enforces it.
+
+The folder a file sits in then tells an agent what the file may and may not do, before it reads a line. A boundary that exists only in a document will be crossed; one that fails the build will not.
+
 ## Names and shape
 
 - A name describes the role today. `shadow`, `new`, `temp`, `today`, `v3` and `fix` describe a moment in history and go stale.
@@ -87,6 +102,12 @@ Keep each entry to a line. The file is a map, and the detail lives in the code i
 It stays true because a check enforces it, not because people remember. [`checks/map.mjs`](../checks/map.mjs) fails when a path named in the file does not exist, and when a file in a folder the file claims to cover is not listed. A line such as `<!-- covers: api/*.js -->` makes that claim. Adding a route without adding its line turns the check red.
 
 [`templates/CODEBASE.md`](../templates/CODEBASE.md) is a starting point.
+
+### The feature map
+
+`features/README.md` lists every feature from the user's point of view: the name people use for it, where a user meets it, and a link to its file. It is a site map of the product.
+
+Its job is shared vocabulary. When someone says "the panel on the left", the map says which feature that is and what it is called in the code, so an agent does not have to guess. Use the map's names in code, in tests and in conversation. [`templates/feature-map.md`](../templates/feature-map.md) is a starting point.
 
 ### A file per feature
 

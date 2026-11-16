@@ -51,6 +51,8 @@ When you find yourself writing a comment that says "this must always be X" or "n
 A lint is how a rule becomes a machine's rule. When you are about to write a sentence telling agents not to do something, first ask whether a lint can refuse it.
 
 - Turn on the linter's rules for real mistakes: unused values, unhandled errors, unreachable code, unsafe comparisons.
+- Every time an agent is corrected, turn the correction into a lint rule or another check. A correction that stays in conversation, or goes into a guide, has to be given again.
+- Write the rule's message for the agent that will read it: say what is wrong and how to fix the root cause. A message that only says "not allowed" invites a workaround.
 - Add a project rule for a mistake that has happened more than once.
 - Do not silence a lint for a line to get past it. If the rule is wrong for this project, change the rule in the configuration, where the decision is visible.
 - Formatting is the formatter's job. Do not spend review or rules on it.

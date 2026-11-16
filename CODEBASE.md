@@ -22,4 +22,5 @@ Where things are in this repository. Read this first.
 | `templates/AGENTS.md` | A starting guide for a project |
 | `templates/CODEBASE.md` | A starting map for a project |
 | `templates/feature.md` | A starting file for one feature |
+| `templates/feature-map.md` | A starting list of every feature by the name users see |
 | `templates/pull-request.md` | A pull request description |

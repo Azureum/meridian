@@ -10,7 +10,8 @@ Do these straight away. They add files and change no code.
 
 1. **Write `CODEBASE.md`** from [`templates/CODEBASE.md`](templates/CODEBASE.md): where things are, where each area starts, and what each API route does. Read the code to write it; do not copy older documents.
 2. **Write one file per feature** in `features/`, from [`templates/feature.md`](templates/feature.md): what the feature is, what it is for, and how it is meant to behave. State what is true now. Leave out what was tried before and how it got here.
-3. **Run the checks** and fix what they report in the files you just wrote:
+3. **Write the feature map** in `features/README.md`, from [`templates/feature-map.md`](templates/feature-map.md): every feature by the name a user would use, where they meet it, and a link to its file.
+4. **Run the checks** and fix what they report in the files you just wrote:
    ```bash
    node checks/map.mjs <repository>
    ```

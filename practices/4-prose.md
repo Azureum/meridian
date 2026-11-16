@@ -12,6 +12,13 @@ Write one only when all of these hold:
 
 A rule that fails the first two tests is a note about a missing fix. Record it as work to do, and remove the rule when the fix lands.
 
+## What prose is misused for
+
+Agents reach for documents, comments, rules and skills as places to write things down, and two habits make that harmful.
+
+- **Justifying a shortcut.** An agent that skips the right fix because it is hard will often explain why in a comment or a note. The explanation makes the shortcut look approved, and the next agent copies both. A written excuse is not a fix. If the right fix is out of reach, report it; do not record a justification.
+- **Turning one correction into a law.** Told once not to do something in one place, an agent may write it down as a rule that holds everywhere and for ever. Apply a correction where it was meant. If it really is general, it becomes a check, not a sentence.
+
 ## How to write one
 
 - State what to do and the reason in a sentence each. A rule without its reason gets followed in the wrong cases and broken in the right ones.

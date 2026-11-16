@@ -75,6 +75,15 @@ A violation is a flaw in the design. Fix the design and run it again. Do not wea
 - It covers the model at the size it was checked, for example three users and two orders. State those sizes when reporting the result.
 - Keep the specification in the repository beside the feature's file. The invariants also go in the feature's file under "What must always be true", so that every agent meets them, and they become assertions, tests and interface properties wherever the code can check them.
 
+## The agent can run it
+
+An agent must be able to run what it changes: start the application, drive it, and look inside it with the debugging tools a person would use. An agent that can only read code is guessing.
+
+- Give agents a way to start the application and reach any part of it without a person's help.
+- Give them the debugger, the network and console views and the performance tools, not only screenshots.
+- Use the feature map's names when saying where to look.
+- Put the commands that drive the application into small command-line tools kept with the project's skills. An agent then reuses one tested tool, and does not spend tokens working out the same steps again in every session.
+
 ## User interfaces
 
 A user interface is verified two ways. Use both.
