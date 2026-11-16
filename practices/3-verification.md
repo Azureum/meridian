@@ -8,9 +8,45 @@ Static checks show the change is well formed. Verification shows it does what wa
 
 **Empirical** verification runs the thing and observes what happens. It covers the cases that were tried, so its strength depends on how many and how varied those cases are.
 
+## What is worth verifying
+
+Verification costs tokens twice: once to produce it, and again every time a later agent has to read and update it. A check that catches nothing is a permanent cost on every future change.
+
+Before adding any check, name the failure it would catch. If you cannot name one that matters, or something cheaper already catches it, do not add it.
+
+### Always
+
+These cost almost nothing and catch real mistakes for as long as the code lives.
+
+- Types that are true and say what things mean.
+- Lints.
+- **Constraints in the database:** uniqueness, required fields, allowed values and links between records, declared in the schema so that the database itself refuses a bad state.
+- **The invariants written down** in the feature's file, in plain words.
+- **Assertions in the code** for those invariants, so that a violation stops the program when it happens and does not corrupt data quietly.
+
+### For anything people rely on
+
+- Tests of behaviour that would hurt if it broke, where no type or constraint already guarantees it.
+- Bombadil on user interfaces. It costs machine time and few tokens.
+- Asking "what must always be true here?" before building. The question is cheap even when no specification follows it.
+
+### Only where a mistake is expensive
+
+- **A TLA+ specification,** when things happen at the same time, money moves, or an action cannot be undone. Write one per feature that needs it, not one per task. A small change to a feature that already has a specification means updating it and running the checker again, which is cheap. A specification written for a small, simple change costs many times the change and checks nothing.
+- **Agents using the interface by hand,** for new or changed screens, not for every change.
+- **Checking real behaviour against the specification:** record what the running system did and check that sequence against the TLA+ model. Only where a specification already exists.
+
+### Do not
+
+- Prove the code itself with a proof tool.
+- Write a specification for a small or simple change.
+- Write a test that repeats what a type already guarantees.
+- Write several tests that cover the same behaviour.
+- Write a test for something nobody would notice breaking.
+
 ## Formal: a TLA+ specification, invariants first
 
-For logic that is verified formally, an agent writes a specification in TLA+ and has a model checker examine every state the design can reach.
+For logic where a mistake is expensive (see above), an agent writes a specification in TLA+ and has a model checker examine every state the design can reach.
 
 ### Start with the invariants
 
@@ -45,7 +81,7 @@ A user interface is verified two ways. Use both.
 
 ### An agent uses it
 
-Send an agent to use the interface the way a person would: open it, do the task, and report what it saw. This catches what only a reader notices, such as a layout that is broken, wording that misleads, or a flow that works and makes no sense.
+For a new or changed screen, send an agent to use the interface the way a person would: open it, do the task, and report what it saw. This catches what only a reader notices, such as a layout that is broken, wording that misleads, or a flow that works and makes no sense.
 
 The agent reports what it did and what happened, with a screenshot of anything it calls wrong. It states plainly what it did not try.
 
