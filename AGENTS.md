@@ -52,8 +52,13 @@ The next agent has no memory of what was intended. It will treat whatever is in 
 21. The repository has a `CODEBASE.md` that says where things are and what each API route does. Read it first. Update it in the same change that adds, moves or removes anything it names; a check fails when it is out of step.
 22. Each feature has its own file in `features/`: what it is, what it is for, how it is meant to behave. It states what is true now, never what was tried before. Read the feature's file before changing the feature, and update it in the same change.
 
+**Verification**
+23. Passing checks is not the task. Show that the change does what was asked, by running it.
+24. Verify a user interface two ways: an agent uses it and reports what it saw, and Bombadil explores it against written properties.
+25. A violation Bombadil finds is a finding. Fix the interface, not the property.
+
 **Reporting**
-23. Say what you ran and what you did not. State an unverified claim as unverified.
-24. If you find a problem outside your task, report it. Do not silently work around it.
+26. Say what you ran and what you did not. State an unverified claim as unverified.
+27. If you find a problem outside your task, report it. Do not silently work around it.
 
 The reasoning and worked examples for each rule are in [`practices/`](practices/).
