@@ -43,7 +43,7 @@ The next agent has no memory of what was intended. It will treat whatever is in 
 
 **Finding your way**
 16. Keep files small enough to read whole. Split by what a reader looks for.
-17. Maps and indexes are generated from the code. Do not hand-write a list that code could produce.
+17. Every repository has a `CODEBASE.md` that says where things are and what each API route does. Read it first. Update it in the same change that adds, moves or removes anything it names; a check fails when it is out of step.
 
 **Reporting**
 18. Say what you ran and what you did not. State an unverified claim as unverified.

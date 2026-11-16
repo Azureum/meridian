@@ -73,5 +73,17 @@ Context is spent on reading. A codebase that is cheap to navigate leaves more of
 
 - Name files and folders for what a reader searches for.
 - Keep one area in one folder.
-- Give each entry point (route, job, command) a short declared description, and build the index from those declarations.
-- Give each interface a declared schema for its inputs and outputs. The schema is the documentation, and it can be checked.
+
+### The codebase file
+
+Every repository has a `CODEBASE.md` at its root. An agent reads it before anything else, so that it opens the three files its task needs and not thirty. It holds:
+
+- **Where things are:** one line per top-level folder.
+- **Where each area starts:** the one or two files to open first for each part of the product.
+- **What the API does:** one line per route, job or command, saying how it is reached and what it does for the caller.
+
+Keep each entry to a line. The file is a map, and the detail lives in the code it points to.
+
+It stays true because a check enforces it, not because people remember. [`checks/map.mjs`](../checks/map.mjs) fails when a path named in the file does not exist, and when a file in a folder the file claims to cover is not listed. A line such as `<!-- covers: api/*.js -->` makes that claim. Adding a route without adding its line turns the check red.
+
+[`templates/CODEBASE.md`](../templates/CODEBASE.md) is a starting point.

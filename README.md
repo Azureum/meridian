@@ -29,7 +29,9 @@ The width of a layer is how much of the work it should carry. Fix a problem at t
 | [`AGENTS.md`](AGENTS.md) | The rules, short enough to load in every session |
 | [`practices/`](practices/) | One page per layer: the reasoning and worked examples |
 | [`checks/scan.mjs`](checks/scan.mjs) | Counts the patterns the rules forbid, and can stop the counts from rising |
-| [`templates/`](templates/) | A starting `AGENTS.md` for a project, and a pull request description |
+| [`checks/map.mjs`](checks/map.mjs) | Keeps a project's `CODEBASE.md` true: named paths exist, covered folders are fully listed |
+| [`templates/`](templates/) | A starting `AGENTS.md` and `CODEBASE.md` for a project, and a pull request description |
+| [`CODEBASE.md`](CODEBASE.md) | Where things are in this repository |
 
 ## Using it in a project
 

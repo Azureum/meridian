@@ -8,11 +8,7 @@ One paragraph: what the project does, how it is deployed, and what a change to t
 
 ## Where things are
 
-| Area | Start here |
-| --- | --- |
-| | |
-
-Keep this to entry points. Generate any longer index from the code.
+[`CODEBASE.md`](CODEBASE.md) says where everything is and what each API route does. Read it before searching.
 
 ## Running it
 

@@ -37,4 +37,6 @@ It does not hold a list of traps. A trap is a defect in the codebase; list it as
 
 ## Maps
 
-A hand-written map of the code is wrong within weeks. Generate the map from the code: the list of routes from the router, the list of jobs from the schedule, the list of settings from the module that reads them. Keep the written part to what cannot be generated: what each area is for.
+A map of the code is worth writing: it is the cheapest way for an agent to find what it needs. Every repository keeps one in `CODEBASE.md` (see [the codebase file](1-codebase.md#the-codebase-file)).
+
+A map nobody checks is wrong within weeks, so the map is checked: the paths it names must exist, and the folders it covers must be fully listed. Write only what the check can hold you to, plus one plain line on what each thing is for.
