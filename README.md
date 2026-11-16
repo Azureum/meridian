@@ -73,6 +73,7 @@ Two more run at their own moment:
 
 ```bash
 node .practices/checks/preflight.mjs .                 # before a run starts
+node .practices/checks/clean.mjs .                     # before work is called done: nothing left behind
 node .practices/checks/shape.mjs <file> <template>     # a written job or account
 ```
 

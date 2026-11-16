@@ -6,7 +6,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "node --test checks/scan.test.mjs checks/map.test.mjs checks/preflight.test.mjs checks/shape.test.mjs checks/features.test.mjs",
+    "test": "node --test checks/scan.test.mjs checks/map.test.mjs checks/preflight.test.mjs checks/shape.test.mjs checks/features.test.mjs checks/clean.test.mjs",
     "scan": "node checks/scan.mjs .",
     "check": "node checks/scan.mjs . --ratchet checks/baseline.json && node checks/map.mjs ."
   }

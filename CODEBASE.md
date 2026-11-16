@@ -25,6 +25,8 @@ Where things are in this repository. Read this first.
 | `checks/features.mjs` | Keeps the feature map and the feature files in step |
 | `checks/shape.mjs` | Fails a document that leaves a section of its template unwritten |
 | `checks/preflight.mjs` | Runs the checks a repository lists in its preflight file and reports every gap as one list |
+| `checks/clean.mjs` | Fails while anything is left uncommitted or untracked |
+| `checks/clean.test.mjs` | Tests for the clean check |
 | `checks/scan.test.mjs` | Tests for the scanner |
 | `checks/map.test.mjs` | Tests for the map check |
 | `checks/features.test.mjs` | Tests for the feature check and the single command |

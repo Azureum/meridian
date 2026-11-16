@@ -38,7 +38,8 @@ These are the ones that need judgment. Everything a machine can check is a check
 8. **Never weaken a check to pass it.** Decide which side is wrong and fix that side.
 9. **Passing checks is not the task.** Show that the change does what was asked, by running it.
 10. **Decide alone what can be undone.** Escalate only what the job's escalate list names.
-11. **Say what is true.** What you ran, what you did not, what is unverified, and anything wrong you found outside your task.
+11. **Clean up after yourself.** Before you call work done, remove everything you made that the finished change does not need: dropped attempts, debugging output, scratch files, test data, running processes. When the run is over, remove its branches and working copies too.
+12. **Say what is true.** What you ran, what you did not, what is unverified, and anything wrong you found outside your task.
 
 ## The checks
 
@@ -55,7 +56,7 @@ node checks/all.mjs <repository>
 | A feature has no file, is missing from the feature map, or has an unwritten section | A file per feature, stating what is true now |
 | A count from the scanner rose: comments, dates or history in comments, swallowed errors, forced styles, checks that cannot fail, tests that read source text, long files, old versions kept by name | The codebase from getting worse |
 
-Before a run starts, `node checks/preflight.mjs <repository>` must pass. A written job or account is checked with `node checks/shape.mjs <file> <template>`.
+Before a run starts, `node checks/preflight.mjs <repository>` must pass. Before work is called done, `node checks/clean.mjs <repository>` must pass: nothing is left uncommitted or untracked. A written job or account is checked with `node checks/shape.mjs <file> <template>`.
 
 ## Read when you need it
 
