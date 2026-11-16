@@ -1,4 +1,4 @@
-# The Pactory
+# Meridian (Pactory)
 
 How agents work in Pigeon Studios repositories: the rules, the reasoning behind them, and a checker that enforces what a machine can enforce.
 
@@ -36,7 +36,7 @@ The width of a layer is how much of the work it should carry. Fix a problem at t
 Add this repository to the project as a submodule, load the rules from the project's own guide, and run the checker in CI.
 
 ```bash
-git submodule add https://github.com/Azureum/the-pactory .practices
+git submodule add https://github.com/Azureum/meridian .practices
 ```
 
 In the project's `CLAUDE.md`:

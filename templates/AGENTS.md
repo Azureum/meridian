@@ -1,6 +1,6 @@
 # Working in this repository
 
-The shared rules are in the `the-pactory` repository and apply here. This file holds only what is specific to this project.
+The shared rules are in the `meridian` repository and apply here. This file holds only what is specific to this project.
 
 ## What this is
 
