@@ -17,7 +17,7 @@ Where things are in this repository. Read this first.
 | `playbooks/fast-ci.md` | A task for an agent: make a repository's CI fast without letting it lie |
 | `checks/scan.mjs` | Counts patterns the rules forbid; `--ratchet` stops a count rising |
 | `checks/map.mjs` | Keeps a repository's `CODEBASE.md` true |
-| `checks/preflight.mjs` | Runs the checks a repository lists in `.meridian/preflight.json` and reports every gap as one list |
+| `checks/preflight.mjs` | Runs the checks a repository lists in its preflight file and reports every gap as one list |
 | `checks/preflight.test.mjs` | Tests for the preflight |
 | `checks/scan.test.mjs` | Tests for the scanner |
 | `checks/map.test.mjs` | Tests for the map check |
