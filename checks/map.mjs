@@ -1,8 +1,4 @@
 #!/usr/bin/env node
-// Keeps a repository's CODEBASE.md true (practices/1-codebase.md, "Finding things").
-//   node checks/map.mjs [dir] [--file CODEBASE.md]
-// Fails when a path the file names does not exist, or when a file matched by one of its
-// "<!-- covers: dir/*.ext -->" lines is not named in it.
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";

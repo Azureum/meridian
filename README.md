@@ -62,6 +62,7 @@ It reads the tracked source files and counts:
 
 | Count | What it finds |
 | --- | --- |
+| `comment` | Any comment at all |
 | `dated-comment` | A date inside a comment |
 | `history-comment` | A comment about what the code was |
 | `stopgap-comment` | A marker for a patch that was never finished |

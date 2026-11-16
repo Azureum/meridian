@@ -34,9 +34,9 @@ The next agent has no memory of what was intended. It will treat whatever is in 
 
 **Comments and history**
 9. Code says what is true now. The commit message says what changed and why.
-10. No dates, no names, no quotes and no incident stories in code.
-11. Comment only what the code cannot say: why a non-obvious thing is so. If a better name would remove the comment, rename.
-12. A comment that is wrong is a defect. Fix or delete it when you see it, even outside your task.
+10. Do not write comments. They go stale, they cannot be enforced, and they give a shortcut somewhere to hide. Say it with a name, a type or a check.
+11. The rare exception is a fact from outside the code that no name, type or check can carry, in one line with no dates, people, quotes or stories.
+12. Delete the comments you find in the code you touch.
 13. Never use a comment or a document to justify skipping the right fix. A written excuse is not a fix.
 
 **Checks**
@@ -60,19 +60,20 @@ The next agent has no memory of what was intended. It will treat whatever is in 
 **Verification**
 28. Passing checks is not the task. Show that the change does what was asked, by running it.
 29. Be able to run what you change, and look inside it with the debugging tools a person would use.
-30. Verify a user interface two ways: Bombadil explores it against written properties, and for a new or changed screen an agent uses it and reports what it saw.
+30. Verify a user interface two ways: Bombadil explores it against written properties, and an agent uses it like a real user and reports what it saw.
 31. A violation Bombadil finds is a finding. Fix the interface, not the property.
-32. For formal verification, write a TLA+ specification. Start by agreeing the invariants with the user: the things that must always be true. Model nothing until they are agreed.
+32. For formal verification, write a TLA+ specification of the major flows, and prove an algorithm that must be exactly right in a proof assistant such as Lean. Start by agreeing the invariants with the user: the things that must always be true. Model nothing until they are agreed.
 33. A violation the model checker finds is a flaw in the design. Fix the design, not the invariant.
-34. Verification must earn its cost. Before adding a check, name the failure it would catch; if you cannot, or something cheaper already catches it, do not add it. A TLA+ specification is for logic where a mistake is expensive, one per feature and never one per task.
-35. Put invariants where they are cheapest to hold: in types, in database constraints, and as assertions in the code.
+34. Spend most of your effort on verification. Layer the techniques; none of them is a complete answer on its own.
+35. Put each invariant everywhere that can hold it: in types, in database constraints, as assertions in the code, and as properties in Bombadil and the model.
 36. Hand over evidence a reviewer can look at: screenshots, recordings, a diagram of the feature's states, and the results of the checks.
 
 **Prose**
 37. One correction is not a law. Apply it where it was meant; if it is truly general, make it a check.
 
-**Reporting**
-38. Say what you ran and what you did not. State an unverified claim as unverified.
-39. If you find a problem outside your task, report it. Do not silently work around it.
+**Review**
+38. The owner reviews by reading your account, not the code. With every change, write it so they understand what you did: what you did, what you tried that worked, what you tried that did not, what you did not like, and what is not verified.
+39. Say what you ran and what you did not. State an unverified claim as unverified.
+40. If you find a problem outside your task, report it. Do not silently work around it.
 
 The reasoning and worked examples for each rule are in [`practices/`](practices/).

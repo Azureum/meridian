@@ -69,18 +69,29 @@ The folder a file sits in then tells an agent what the file may and may not do, 
 
 ## Comments
 
-Code says what is true now. History belongs to version control.
+Do not write comments. Say it with a name, a type or a check.
 
-Write a comment when the code cannot carry the reason: a constraint from outside, an invariant another part relies on, a choice that looks wrong and is right. Keep it to the reason.
+A comment looks helpful and does harm in four ways:
 
-Do not write:
-- dates, people, quotes, ticket or pull request numbers
-- what the code used to do, or what was tried before
-- the story of the bug that led to this line
-- a description of what the next line plainly does
-- instructions to future agents
+- **It goes stale.** Nothing fails when the code changes and the comment does not.
+- **Nobody reads it.** People skim past comments, so a stale one stays wrong for a long time.
+- **It cannot be enforced.** A comment that says "never do this here" stops nothing. The next agent may not read it, and nothing breaks if it is ignored.
+- **It is an escape hatch.** An agent that takes a shortcut will explain the shortcut in a comment. The explanation makes the patch look approved, and the next agent copies the patch and the excuse together.
 
-A file header states what the file is for, in a few lines. If it lists the file's contents, the list is either generated or wrong.
+So where you would write a comment, do one of these:
+
+| You wanted to say | Do this |
+| --- | --- |
+| What this code does | Rename it so the name says so |
+| This value must be one of these | Make it a type |
+| Never call this from there | Make it a lint rule or an import boundary |
+| This must always hold | Make it an assertion or a test |
+| Why this changed, what was tried | Put it in the commit message |
+| What this feature is for | Put it in the feature's file |
+
+The rare exception is a fact from outside the code that none of those can carry, such as a requirement from a law, a contract or another system. State the fact in one line. No dates, people, quotes or stories.
+
+When you change a file, delete the comments in the part you touch that this section does not allow.
 
 ## Finding things
 

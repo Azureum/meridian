@@ -1,10 +1,4 @@
 #!/usr/bin/env node
-// Counts the patterns that practices/1-codebase.md and practices/2-static-analysis.md describe.
-//   node checks/scan.mjs [dir]                      print the counts
-//   node checks/scan.mjs [dir] --baseline <file>    save the counts
-//   node checks/scan.mjs [dir] --ratchet <file>     exit 1 if any count is above the saved one
-//   node checks/scan.mjs [dir] --json               print the counts as JSON
-//   --exclude <regex>                               skip paths that match (repeatable)
 import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -19,6 +13,7 @@ const WORKFLOW = /(^|\/)\.github\/workflows\//;
 const SOURCE_PATH_IN_STRING = /readFileSync\([^)]*\.(m?js|css|html|ya?ml)\b/;
 
 export const DETECTORS = {
+  "comment": { on: "comment", why: "say it with a name, a type or a check", re: /\S/ },
   "dated-comment": { on: "comment", why: "history belongs in commits", re: new RegExp(`\\b(?:20\\d\\d-\\d\\d-\\d\\d|\\d{1,2} ${MONTH} 20\\d\\d|${MONTH} \\d{1,2},? 20\\d\\d)\\b`) },
   "history-comment": { on: "comment", why: "says what the code was, not what it is", re: /\b(used to|no longer|previously|formerly|originally|was removed|were removed|retired|as before|until then)\b/i },
   "stopgap-comment": { on: "comment", why: "marks a patch that was never finished", re: /\b(TODO|FIXME|HACK|XXX)\b|\b(temporary|temporarily|for now|workaround|band-?aid|quick fix)\b/i },
@@ -46,24 +41,56 @@ function listFiles(dir) {
   return out;
 }
 
-// Splits one line into its code and its comment, carrying block-comment state between lines.
-function splitter(file) {
-  const hash = /\.(py|sh|ya?ml)$/i.test(file), html = /\.html?$/i.test(file);
+const REGEX_MAY_FOLLOW = /(^|[(,=:\[!&|?{};+\-*%<>~^]|\b(return|typeof|case|in|of))$/;
+
+function closingQuote(line, from, quote) {
+  for (let k = from; k < line.length; k++) { if (line[k] === "\\") k++; else if (line[k] === quote) return k; }
+  return -1;
+}
+
+function closingRegex(line, from) {
+  let inClass = false;
+  for (let k = from; k < line.length; k++) {
+    const ch = line[k];
+    if (ch === "\\") k++; else if (ch === "[") inClass = true; else if (ch === "]") inClass = false; else if (ch === "/" && !inClass) return k;
+  }
+  return -1;
+}
+
+function codeAndCommentOf(file) {
+  const hash = /\.(py|sh|ya?ml)$/i.test(file), html = /\.html?$/i.test(file), script = !hash && !html && !/\.css$/i.test(file);
   const [open, close] = html ? ["<!--", "-->"] : ["/*", "*/"];
-  let inBlock = false;
+  let inBlock = false, inTemplate = false;
   return (line) => {
-    let code = "", comment = "", rest = line;
-    while (rest) {
+    let code = "", comment = "", i = 0;
+    while (i < line.length) {
       if (inBlock) {
-        const end = rest.indexOf(close);
-        if (end < 0) { comment += rest; rest = ""; } else { comment += rest.slice(0, end); rest = rest.slice(end + close.length); inBlock = false; }
-        continue;
+        const end = line.indexOf(close, i);
+        if (end < 0) { comment += line.slice(i); break; }
+        comment += line.slice(i, end); i = end + close.length; inBlock = false; continue;
       }
-      const block = hash ? -1 : rest.indexOf(open);
-      const lineMark = hash ? rest.search(/(^|\s)#/) : html ? -1 : rest.search(/(^|[^:\\"'`])\/\//);
-      if (lineMark >= 0 && (block < 0 || lineMark < block)) { code += rest.slice(0, lineMark + 1); comment += rest.slice(lineMark + 1); rest = ""; }
-      else if (block >= 0) { code += rest.slice(0, block); rest = rest.slice(block + open.length); inBlock = true; }
-      else { code += rest; rest = ""; }
+      if (inTemplate) {
+        const end = closingQuote(line, i, "`");
+        if (end < 0) { code += line.slice(i); break; }
+        code += line.slice(i, end + 1); i = end + 1; inTemplate = false; continue;
+      }
+      const ch = line[i];
+      if (!html && (ch === '"' || ch === "'" || (script && ch === "`"))) {
+        const end = closingQuote(line, i + 1, ch);
+        if (end < 0) { code += line.slice(i); inTemplate = ch === "`"; break; }
+        code += line.slice(i, end + 1); i = end + 1; continue;
+      }
+      if (hash) {
+        if (ch === "#" && (i === 0 || /\s/.test(line[i - 1]))) { comment += line.slice(i + 1); break; }
+        code += ch; i++; continue;
+      }
+      if (line.startsWith(open, i)) { inBlock = true; i += open.length; continue; }
+      if (script && line.startsWith("//", i)) { comment += line.slice(i + 2); break; }
+      if (script && ch === "/" && REGEX_MAY_FOLLOW.test(code.trimEnd())) {
+        const end = closingRegex(line, i + 1);
+        if (end > 0) { code += line.slice(i, end + 1); i = end + 1; continue; }
+      }
+      code += ch; i++;
     }
     return { code, comment };
   };
@@ -79,7 +106,8 @@ export function scan(dir, { exclude = [] } = {}) {
     let text;
     try { text = readFileSync(path.join(dir, file), "utf8"); } catch (e) { if (e.code === "ENOENT" || e.code === "EISDIR") continue; throw e; }
     scanned++;
-    const lines = text.split("\n"), split = splitter(file);
+    const lines = text.split("\n"), split = codeAndCommentOf(file);
+    if (lines[0].startsWith("#!")) lines[0] = "";
     if (lines.length > BIG_FILE_LINES) add("big-file", file);
     if (TEST_FILE.test(file) && lines.some((l) => SOURCE_PATH_IN_STRING.test(l))) add("test-reads-source", file);
     for (const line of lines) {
