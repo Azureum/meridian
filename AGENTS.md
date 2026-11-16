@@ -36,20 +36,24 @@ The next agent has no memory of what was intended. It will treat whatever is in 
 9. Comment only what the code cannot say: why a non-obvious thing is so. If a better name would remove the comment, rename.
 10. A comment that is wrong is a defect. Fix or delete it when you see it, even outside your task.
 
-**Checks and tests**
-11. A rule that a machine can check becomes a check, not a sentence.
-12. Tests assert behaviour. Never assert on the text of a source file.
-13. A test that did not run has not passed. No skips that print green, no soft failures, no "known bug" wrappers.
-14. Never weaken a test to make it pass. If the test is wrong, say why in the commit.
-15. Every test file runs somewhere. If it runs nowhere, delete it.
+**Checks**
+11. After every change: compile, build, lint, type-check, test. The work is not done until all are clean.
+12. Keep types true. Never switch the checker off or reach for a catch-all type to get past an error.
+13. Use types to say what things mean, so that code which is wrong in its logic does not compile.
+14. A rule that a machine can check becomes a lint or a check, not a sentence.
+15. CI runs every check on every change. The main branch stays green.
+16. Tests assert behaviour. Never assert on the text of a source file.
+17. A test that did not run has not passed. No skips that print green, no soft failures, no "known bug" wrappers.
+18. Never weaken a check to make it pass. If the check is wrong, say why in the commit.
+19. Every test file runs somewhere. If it runs nowhere, delete it.
 
 **Finding your way**
-16. Keep files small enough to read whole. Split by what a reader looks for.
-17. The repository has a `CODEBASE.md` that says where things are and what each API route does. Read it first. Update it in the same change that adds, moves or removes anything it names; a check fails when it is out of step.
-18. Each feature has its own file in `features/`: what it is, what it is for, how it is meant to behave. It states what is true now, never what was tried before. Read the feature's file before changing the feature, and update it in the same change.
+20. Keep files small enough to read whole. Split by what a reader looks for.
+21. The repository has a `CODEBASE.md` that says where things are and what each API route does. Read it first. Update it in the same change that adds, moves or removes anything it names; a check fails when it is out of step.
+22. Each feature has its own file in `features/`: what it is, what it is for, how it is meant to behave. It states what is true now, never what was tried before. Read the feature's file before changing the feature, and update it in the same change.
 
 **Reporting**
-19. Say what you ran and what you did not. State an unverified claim as unverified.
-20. If you find a problem outside your task, report it. Do not silently work around it.
+23. Say what you ran and what you did not. State an unverified claim as unverified.
+24. If you find a problem outside your task, report it. Do not silently work around it.
 
 The reasoning and worked examples for each rule are in [`practices/`](practices/).
