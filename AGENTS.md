@@ -83,7 +83,7 @@ The next agent has no memory of what was intended. It will treat whatever is in 
 42. Work from a written job: done as commands that must pass, the files you may touch, and what is out of scope. New ideas go on the follow-up list, not into this run.
 43. No run starts until the preflight script passes. It reports every gap to the user once, as one list.
 44. Decide alone anything that can be undone, and note it. Escalate only what the job's escalate list names, such as deleting data, spending money and public actions.
-45. Split work that has no dependencies across agents, attach the right agent to each chunk, and give each a complete brief. Keep dependent steps in one agent.
+45. Split work that has no dependencies across agents, attach the right agent to each chunk, and give each a complete brief. Keep dependent steps in one agent. Keep code edits and judgment on the strong model; give smaller models only work where a mistake is cheap to spot.
 46. Write progress and blockers to the run's checkpoint file at set points, so a stuck run is seen and a stopped one can resume.
 47. Work is finished when it has been through every layer, merged, and watched, not when the code is written.
 48. If the repository merges on its own, merge only work that is clean, verified and has its account written. If it waits for approval, wait.
