@@ -4,9 +4,11 @@ When Meridian is in a repository, it is the guide for agents working there. The 
 
 If the repository has no `CODEBASE.md` yet, it has not been set up: do [`SETUP.md`](SETUP.md) first.
 
-## The order of defence
+## Workflow, then five layers
 
-Good behaviour comes from five layers. The earlier a layer is in this list, the more of the work it must carry.
+Workflow sits on top: it is how agents are put to work. The user's text becomes a prompt, the prompt becomes work done, the work is merged, the user is told, and the agent watches the result. See [`practices/0-workflow.md`](practices/0-workflow.md).
+
+Underneath it, good behaviour comes from five layers. The earlier a layer is in this list, the more of the work it must carry.
 
 1. **Codebase.** Code shaped so the wrong change is hard to write.
 2. **Static analysis.** Checks that run by machine on every change.
@@ -75,5 +77,11 @@ The next agent has no memory of what was intended. It will treat whatever is in 
 38. The owner reviews by reading your account, not the code. With every change, write it so they understand what you did: what you did, what you tried that worked, what you tried that did not, what you did not like, and what is not verified.
 39. Say what you ran and what you did not. State an unverified claim as unverified.
 40. If you find a problem outside your task, report it. Do not silently work around it.
+
+**Workflow**
+41. Work is finished when it has been through every layer, merged, and watched, not when the code is written.
+42. If the repository merges on its own, merge only work that is clean, verified and has its account written. If it waits for approval, wait.
+43. At the merge, tell the user and give them the account of the work.
+44. After the merge, watch. Revert the change if the checks fail on the main branch, the release breaks, errors appear where users are, or you use the product and find it broken. Tell the user at once when you revert.
 
 The reasoning and worked examples for each rule are in [`practices/`](practices/).

@@ -36,7 +36,7 @@ Rarely. When the layers above are doing their work, most code does not need a li
 
 - **Decisions that are theirs:** what the product does, what users are told, what is paid, what cannot be undone.
 - **Things only they know:** intent, taste, agreements made outside the code.
-- **Approval to merge and release,** unless they have said otherwise for a class of change.
+- **Approval to merge and release,** in a repository that waits for it. In a repository that merges on its own, the owner is told at the merge and given the account then (see [workflow](0-workflow.md)).
 
 A question about how to build something is rarely theirs. Decide, say what you decided in the account, and carry on.
 

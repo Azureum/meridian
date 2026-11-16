@@ -8,6 +8,7 @@ Where things are in this repository. Read this first.
 | --- | --- |
 | `SETUP.md` | What an agent does the first time it finds Meridian in a repository |
 | `AGENTS.md` | The rules every session loads |
+| `practices/0-workflow.md` | The layer on top: text to prompt to work done, merging, and watching the result |
 | `practices/1-codebase.md` | Why the code itself is the main instruction, and the band-aid catalogue |
 | `practices/2-static-analysis.md` | The loop of compile, build, lint, type-check and test; expressive types; CI |
 | `practices/3-verification.md` | Proving a change does what was asked |

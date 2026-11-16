@@ -20,6 +20,8 @@ Agents build most of our code, and each one starts with no memory of what the la
             └─────────────────────┘
 ```
 
+Workflow sits on top of all five: it is how agents are put to work on them, from what a person types, to a prompt, to work that is merged and watched.
+
 The width of a layer is how much of the work it should carry. Fix a problem at the widest layer that can hold the fix.
 
 ## What is here
@@ -28,7 +30,7 @@ The width of a layer is how much of the work it should carry. Fix a problem at t
 | --- | --- |
 | [`SETUP.md`](SETUP.md) | What an agent does the first time it finds Meridian in a repository |
 | [`AGENTS.md`](AGENTS.md) | The rules, short enough to load in every session |
-| [`practices/`](practices/) | One page per layer: the reasoning and worked examples |
+| [`practices/`](practices/) | One page for workflow and one per layer: the reasoning and worked examples |
 | [`playbooks/`](playbooks/) | Tasks an agent carries out on a repository, such as making its CI fast |
 | [`checks/scan.mjs`](checks/scan.mjs) | Counts the patterns the rules forbid, and can stop the counts from rising |
 | [`checks/map.mjs`](checks/map.mjs) | Keeps a project's `CODEBASE.md` true: named paths exist, covered folders are fully listed |

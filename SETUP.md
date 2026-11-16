@@ -16,9 +16,13 @@ Do these straight away. They add files and change no code.
    node checks/map.mjs <repository>
    ```
 
-## 2. Ask about a clean-up
+## 2. Ask how to merge
 
-When step 1 is done, show the user what the scanner finds:
+Ask the user whether this repository merges finished work on its own or waits for them to approve each merge. Record the answer in the repository's own `AGENTS.md`. [`practices/0-workflow.md`](practices/0-workflow.md) describes both.
+
+## 3. Ask about a clean-up
+
+Then show the user what the scanner finds:
 
 ```bash
 node checks/scan.mjs <repository>
