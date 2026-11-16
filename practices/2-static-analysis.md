@@ -74,6 +74,10 @@ CI runs the whole loop on every change, on a clean machine, so that nothing depe
 - The main branch stays green. A red main branch hides every new failure behind the old ones, so fixing it comes before other work.
 - CI is fast enough to wait for. When it is slow, agents stop waiting and merge on hope.
 
+Speed never outranks honesty. The full suite runs before anything reaches the main branch, and CI is never made faster by retrying, widening a timeout or skipping a test.
+
+To speed a repository's CI up, an agent follows [`playbooks/fast-ci.md`](../playbooks/fast-ci.md): measure where the time goes, fix the biggest part first, and hold each part to a budget that fails the job when it is exceeded.
+
 ## Never weaken a check to pass
 
 When a check fails after your change, one of three things is true: your change is wrong, the check is out of date because behaviour changed on purpose, or the check was always wrong. Decide which, fix that side, and say which in the commit message.

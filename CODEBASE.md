@@ -2,17 +2,18 @@
 
 Where things are in this repository. Read this first.
 
-<!-- covers: checks/*.mjs practices/*.md templates/*.md -->
+<!-- covers: checks/*.mjs practices/*.md playbooks/*.md templates/*.md -->
 
 | Path | What is there |
 | --- | --- |
 | `SETUP.md` | What an agent does the first time it finds Meridian in a repository |
 | `AGENTS.md` | The rules every session loads |
 | `practices/1-codebase.md` | Why the code itself is the main instruction, and the band-aid catalogue |
-| `practices/2-static-analysis.md` | Turning rules into checks, and what makes a test worth having |
+| `practices/2-static-analysis.md` | The loop of compile, build, lint, type-check and test; expressive types; CI |
 | `practices/3-verification.md` | Proving a change does what was asked |
 | `practices/4-prose.md` | When a written rule is justified and what a project guide holds |
 | `practices/5-human-review.md` | What reaches the owner and how to make review cheap |
+| `playbooks/fast-ci.md` | A task for an agent: make a repository's CI fast without letting it lie |
 | `checks/scan.mjs` | Counts patterns the rules forbid; `--ratchet` stops a count rising |
 | `checks/map.mjs` | Keeps a repository's `CODEBASE.md` true |
 | `checks/scan.test.mjs` | Tests for the scanner |

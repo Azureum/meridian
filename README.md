@@ -29,6 +29,7 @@ The width of a layer is how much of the work it should carry. Fix a problem at t
 | [`SETUP.md`](SETUP.md) | What an agent does the first time it finds Meridian in a repository |
 | [`AGENTS.md`](AGENTS.md) | The rules, short enough to load in every session |
 | [`practices/`](practices/) | One page per layer: the reasoning and worked examples |
+| [`playbooks/`](playbooks/) | Tasks an agent carries out on a repository, such as making its CI fast |
 | [`checks/scan.mjs`](checks/scan.mjs) | Counts the patterns the rules forbid, and can stop the counts from rising |
 | [`checks/map.mjs`](checks/map.mjs) | Keeps a project's `CODEBASE.md` true: named paths exist, covered folders are fully listed |
 | [`templates/`](templates/) | Starting files for a project: `AGENTS.md`, `CODEBASE.md`, a feature file, and a pull request description |

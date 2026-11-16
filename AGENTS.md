@@ -41,7 +41,7 @@ The next agent has no memory of what was intended. It will treat whatever is in 
 12. Keep types true. Never switch the checker off or reach for a catch-all type to get past an error.
 13. Use types to say what things mean, so that code which is wrong in its logic does not compile.
 14. A rule that a machine can check becomes a lint or a check, not a sentence.
-15. CI runs every check on every change. The main branch stays green.
+15. CI runs every check on every change, and the full suite before anything reaches the main branch. The main branch stays green. Never make CI faster by hiding failures: no retries, wider timeouts or skipped tests.
 16. Tests assert behaviour. Never assert on the text of a source file.
 17. A test that did not run has not passed. No skips that print green, no soft failures, no "known bug" wrappers.
 18. Never weaken a check to make it pass. If the check is wrong, say why in the commit.
