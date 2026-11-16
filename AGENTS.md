@@ -80,9 +80,10 @@ The next agent has no memory of what was intended. It will treat whatever is in 
 
 **Workflow**
 41. Before starting, work out what the user said and what they actually want, then say it back to them with how urgent you take it to be. Start from what they confirm, not from a guess.
-42. Work is finished when it has been through every layer, merged, and watched, not when the code is written.
-43. If the repository merges on its own, merge only work that is clean, verified and has its account written. If it waits for approval, wait.
-44. At the merge, tell the user and give them the account of the work.
-45. After the merge, watch. Revert the change if the checks fail on the main branch, the release breaks, errors appear where users are, or you use the product and find it broken. Tell the user at once when you revert.
+42. From the confirmed prompt, decide what to do, break it into chunks that can run at the same time, and attach the right agent to each. Give every agent a brief that stands on its own.
+43. Work is finished when it has been through every layer, merged, and watched, not when the code is written.
+44. If the repository merges on its own, merge only work that is clean, verified and has its account written. If it waits for approval, wait.
+45. At the merge, tell the user and give them the account of the work.
+46. After the merge, watch. Revert the change if the checks fail on the main branch, the release breaks, errors appear where users are, or you use the product and find it broken. Tell the user at once when you revert.
 
 The reasoning and worked examples for each rule are in [`practices/`](practices/).

@@ -22,7 +22,7 @@ fine: it stays       not fine: revert it
 
 1. **Text.** The user says what they want, in their own words.
 2. **Prompt.** The agent says back what it understands the user wants and how urgent it is, and the user confirms or corrects. The confirmed version is the prompt.
-3. **Work done.** The agent does the work through the layers below: in a clean codebase, with every check clean, and verified.
+3. **Work done.** The agent decides what to do, breaks it into chunks that can run at the same time, attaches the right agent to each and runs them as a swarm. The work goes through the layers below: in a clean codebase, with every check clean, and verified.
 4. **Merge.**
 5. **Tell the user.** At the merge, the agent tells the user and gives them the account of the work.
 6. **Watch.** The agent stays with the change and observes what happens.
@@ -40,6 +40,20 @@ What a person types is rarely the whole of what they want. It is short, it leave
 Do not fill a gap with a guess and start. A wrong guess costs the whole piece of work, and saying it back costs a few sentences.
 
 Keep it short. This is a check of understanding, not a plan and not a list of questions. If the text was already clear, say it back in one line with the urgency and go on.
+
+## From prompt to work
+
+With the prompt confirmed, the agent that received it decides how the work gets done. It does not start typing code. It plans the work and hands it out.
+
+1. **Decide what to do.** From the confirmed prompt and the codebase's own files (`CODEBASE.md`, the feature map and the feature files), work out everything the outcome needs.
+2. **Break it into chunks that can run at the same time.** A chunk is a piece of the work that one agent can finish without waiting for another. Two chunks can run together when neither needs the other's result and they do not change the same files. Work that depends on an earlier piece waits for it; everything else runs in parallel.
+3. **Attach the right agent to each chunk.** Match the agent to the job: a strong model for design, for clean-up across many files and for anything where a mistake is expensive; a lighter one for narrow, mechanical work; a separate one, with no view of the others' reasoning, for review and for verification.
+4. **Build the swarm and brief it.** Start the agents together. Each one gets a brief that stands on its own: the outcome wanted, its own chunk and the files it owns, what done looks like, and the urgency. An agent knows only what its brief tells it.
+5. **Bring the results together.** The agent that planned the work collects what the swarm produced, checks each piece against its brief, and puts them through the layers below as one change or several.
+
+Every agent in the swarm follows Meridian. Splitting the work up does not let any piece skip a layer.
+
+A small piece of work needs no swarm. If the work is one chunk, one agent does it.
 
 ## Merging
 
