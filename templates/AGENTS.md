@@ -1,14 +1,12 @@
 # Working in this repository
 
-The shared rules are in the `meridian` repository and apply here. This file holds only what is specific to this project.
+Meridian is the guide here. This file holds only what is specific to this project.
 
-## What this is
+Read [`SYSTEM.md`](SYSTEM.md) first: what this system is and what matters most in it. Then [`CODEBASE.md`](CODEBASE.md): where everything is and what each API route does.
 
-One paragraph: what the project does, how it is deployed, and what a change to the main branch causes.
+## How this repository merges
 
-## Where things are
-
-[`CODEBASE.md`](CODEBASE.md) says where everything is and what each API route does. Read it before searching.
+Either "Finished work merges on its own" or "Every merge waits for approval", as the user chose at setup.
 
 ## Running it
 

@@ -8,6 +8,7 @@
     "forced-style": 0,
     "soft-check": 0,
     "test-reads-source": 0,
-    "big-file": 0
+    "big-file": 0,
+    "versioned-name": 0
   }
 }

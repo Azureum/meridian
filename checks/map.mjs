@@ -3,7 +3,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const looksLikePath = (s) => !/[*<>:?{}$]/.test(s) && !s.startsWith("/") && (s.includes("/") || /\.[a-z0-9]+$/i.test(s));
+export const looksLikePath = (s) => !/[*<>:?{}$]/.test(s) && !s.startsWith("/") && (s.includes("/") || /\.[a-z0-9]+$/i.test(s));
 
 export function checkMap(root, file = "CODEBASE.md") {
   const full = path.join(root, file);

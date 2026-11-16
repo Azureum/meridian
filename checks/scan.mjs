@@ -10,6 +10,7 @@ const SCANNED = /\.(m?js|cjs|jsx|tsx?|css|html?|py|sh|ya?ml)$/i;
 const SKIPPED = /(^|\/)(node_modules|vendor|dist|build|coverage|\.git)\/|\.min\.|(^|\/)package-lock\.json$/;
 const TEST_FILE = /(^|\/)(tests?|__tests__|spec)\/|[._-](test|spec|unit|e2e)\.[a-z]+$/i;
 const WORKFLOW = /(^|\/)\.github\/workflows\//;
+const VERSIONED_NAME = /(^|[._-])(v\d+|legacy|old|deprecated|shadow|backup|bak|copy)(?=[._-]|$)/i;
 const SOURCE_PATH_IN_STRING = /readFileSync\([^)]*\.(m?js|css|html|ya?ml)\b/;
 
 export const DETECTORS = {
@@ -24,6 +25,7 @@ export const DETECTORS = {
 const FILE_DETECTORS = {
   "test-reads-source": "a test that matches source text instead of calling the code",
   "big-file": `more than ${BIG_FILE_LINES} lines`,
+  "versioned-name": "an old version kept beside the live one",
 };
 
 function listFiles(dir) {
@@ -109,6 +111,7 @@ export function scan(dir, { exclude = [] } = {}) {
     const lines = text.split("\n"), split = codeAndCommentOf(file);
     if (lines[0].startsWith("#!")) lines[0] = "";
     if (lines.length > BIG_FILE_LINES) add("big-file", file);
+    if (VERSIONED_NAME.test(path.basename(file).replace(/\.[^.]+$/, ""))) add("versioned-name", file);
     if (TEST_FILE.test(file) && lines.some((l) => SOURCE_PATH_IN_STRING.test(l))) add("test-reads-source", file);
     for (const line of lines) {
       if (line.length > 5000) continue;

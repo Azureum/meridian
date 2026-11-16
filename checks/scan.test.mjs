@@ -111,6 +111,11 @@ test("a test that reads source text, and a long file", () => {
   assert.deepEqual(worst["big-file"], [["src/long.js", 1]]);
 });
 
+test("a file named as an old version is counted, a versioned folder is not", () => {
+  const dir = repo({ "src/pay_v2.js": "x;\n", "src/legacy-pay.js": "x;\n", "src/pay.old.js": "x;\n", "api/v2/pay.js": "x;\n", "src/gold.js": "x;\n", "src/envelope.js": "x;\n" });
+  assert.equal(scan(dir).counts["versioned-name"], 3);
+});
+
 test("vendored and generated paths are skipped, and --exclude adds more", () => {
   const bad = inPieces(SLASHES, " TO", "DO\n");
   const dir = repo({ "node_modules/a/i.js": bad, "assets/vendor/lib.js": bad, "app.min.js": bad, "legacy/a.js": bad, "src/a.js": bad });
