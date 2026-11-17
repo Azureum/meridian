@@ -13,7 +13,8 @@ None of the techniques below is new. They are ordinary good engineering that use
 Layer the techniques. No single one is a complete answer, and each catches what the others miss:
 
 - types, lints, database constraints and assertions, which hold all the time at almost no cost
-- tests of behaviour
+- tests of behaviour, of whole user flows first
+- property tests, and old against new for a rewrite
 - the agent running the application and looking inside it
 - Bombadil exploring the interface
 - agents using the product like real users, and fuzzing each release
@@ -80,6 +81,9 @@ An agent must be able to run what it changes: start the application, drive it, a
 - Give them the debugger, the network and console views and the performance tools, not only screenshots.
 - Use the feature map's names when saying where to look.
 - Put the commands that drive the application into small command-line tools kept with the project's skills. An agent then reuses one tested tool, and does not spend tokens working out the same steps again in every session.
+- Give those tools one entry point, a skill named `verify`, that starts the application and exercises a change the way this project needs. Every agent runs it before committing. It is the project's smoke test, so it is improved and tested like any other code.
+
+A test of a whole flow, driven through the running application, is worth more than a test of one function. It is hard to satisfy by accident, and when it fails it shows the step, the screen and the error, where a unit test often shows only that something timed out. Write the flows from the feature map: each feature's file already lists what a user does and what should happen.
 
 ## User interfaces
 
@@ -123,6 +127,39 @@ What makes it stronger than a scripted test is that nobody has to think of the p
 Read [the Bombadil manual](https://antithesishq.github.io/bombadil/) for the specification language before writing properties. Do not guess its interface.
 
 **A violation is a finding.** Fix the interface. Do not weaken the property, shorten the run or exclude the path to make it pass, unless the property itself was wrong, and then say so.
+
+## Properties in code
+
+The same idea works without an interface. State something that must hold for every input, and let a library generate thousands of inputs that try to break it: fast-check for JavaScript and TypeScript, Hypothesis for Python, proptest for Rust. The agent did not choose the cases, so they do not share its blind spots.
+
+Shapes that come up again and again:
+
+- **There and back:** encoding a value and decoding it returns the value.
+- **Invariant:** a balance is never below zero, whatever sequence of actions ran.
+- **Twice is once:** doing the action a second time changes nothing.
+- **Same as the simple version:** the fast code gives the answer the slow, obviously correct code gives.
+
+## Old against new
+
+For a rewrite or a migration, where behaviour is meant to stay the same, run the old code and the new code on the same inputs and compare every result.
+
+- Use generated inputs, and real ones where they exist: recorded requests, stored rows, past months.
+- Remove differences that do not matter, such as spacing and ordering that was never promised, before comparing.
+- Every remaining difference is either a fault or an intended change. Keep the list of intended ones in the change, each with its reason, so the comparison can run clean again.
+
+This is the strongest check a rewrite can have when the written description of the old behaviour has drifted from what the old code does.
+
+## A checklist from what went wrong
+
+Some faults cannot be made into a type, a lint or a test, and come back anyway. Keep those as a checklist in the repository. Each item has three parts:
+
+- **a trigger** that can be read from the change itself, such as "the stored format of a session changed"
+- **the question to answer,** such as "does a record written before this change still load?"
+- **where it came from:** the incident or the reverted change that taught it
+
+Before finishing, the agent reads its own change against the triggers and works through only the items that match, which is usually a handful. The account says which items matched and what each one showed.
+
+An item earns its place by pointing at something that happened. When an item can become a check, make it one and delete the item.
 
 ## Everything else
 

@@ -64,6 +64,7 @@ A lint is how a rule becomes a machine's rule. When you are about to write a sen
 - **Every test file runs.** Tests are found by rule, not by a hand-kept list.
 - **A test that did not run has not passed.** A skip is reported as a skip, and fails the run where it was supposed to run.
 - **Fast enough to run before finishing.** Make tests independent so they can run side by side.
+- **A test gives the same answer every time.** A test that sometimes fails teaches agents to run it again instead of fixing the code. Find the cause. Do not skip it, add a wait or retry it. If the cause cannot be found, delete the test and record why in the commit, because a test nobody believes protects nothing.
 - **Name tests for the feature,** not for the session or fix that added them.
 
 ## CI
@@ -80,11 +81,32 @@ Speed never outranks honesty. The full suite runs before anything reaches the ma
 
 To speed a repository's CI up, an agent follows [`playbooks/fast-ci.md`](../playbooks/fast-ci.md): measure where the time goes, fix the biggest part first, and hold each part to a budget that fails the job when it is exceeded.
 
+## A change cannot judge itself
+
+A check is only worth something if the change it judges cannot alter it.
+
+- The rules a change is held to are read from the main branch, never from the change. That covers review instructions, gate settings, the scanner's baseline and the list of what CI runs.
+- A change that edits a check, a baseline or a gate says so in the first line of its account, and the edit is reviewed as its own purpose.
+- A pass belongs to the commit it ran on. After another commit is added, the earlier pass says nothing, and the checks run again.
+
 ## Never weaken a check to pass
 
 When a check fails after your change, one of three things is true: your change is wrong, the check is out of date because behaviour changed on purpose, or the check was always wrong. Decide which, fix that side, and say which in the commit message.
 
 Loosening a pattern, adding an entry to an allow-list, raising a timeout, silencing a lint and widening a type are all the same move: making the signal go away.
+
+## Three attempts, then a person
+
+Nobody reads every change, so a failing check is how a change earns a person's attention. An agent fixes what a check reports and runs it again. When the same check still fails after three attempts, the agent stops and brings in the owner, with what it tried each time. A fourth and fifth attempt are where a check gets weakened to make it pass.
+
+## Checks are checked too
+
+A check is code, and it can be wrong in both directions: it can miss what it exists to catch, and it can stop work that was fine.
+
+- **Watch before blocking.** A new gate first runs without blocking and records what it would have blocked. Read that record for work it would have stopped wrongly, fix the gate, and only then let it block.
+- **Measure against what really went wrong.** Keep the changes that were reverted or that caused an incident. A check meant to catch that kind of fault is run against them, and against a matching set of changes that stayed clean, so that it is graded on real faults and on how often it cries wolf.
+- **A miss becomes a rule.** When a fault got past every check, and it could have been seen in the change, add the check that would have caught it and show that it does.
+- **Prune.** Checks, tests, rules and documents only grow unless someone removes them. Regularly delete the ones that no longer catch anything, and say in the commit what each one was for.
 
 ## Meridian's own checks
 

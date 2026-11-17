@@ -35,7 +35,7 @@ These are the ones that need judgment. Everything a machine can check is a check
 5. **One source of truth.** A value, list or rule lives in one place.
 6. **Fail closed.** A failed read is a failure, never "nothing there".
 7. **Fix it at the highest layer that can hold the fix.** A correction you are given becomes code shape or a check, not a sentence.
-8. **Never weaken a check to pass it.** Decide which side is wrong and fix that side.
+8. **Never weaken a check to pass it.** Decide which side is wrong and fix that side. If it still fails after three attempts, stop and bring in the owner.
 9. **Passing checks is not the task.** Show that the change does what was asked, by running it.
 10. **Decide alone what can be undone.** Escalate only what the job's escalate list names.
 11. **Clean up after yourself.** Before you call work done, remove everything you made that the finished change does not need: dropped attempts, debugging output, scratch files, test data, running processes. When the run is over, remove its branches and working copies too.
