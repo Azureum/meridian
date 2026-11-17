@@ -33,7 +33,7 @@ If the work made a mess you cannot fully undo, say so in the account under "What
 A repository either merges finished work on its own or waits for a person to approve each merge. The choice was recorded at first-time setup, in the repository's own `AGENTS.md`.
 
 - **It merges on its own:** merge only work that has been through every layer. The loop is clean, the change is verified, and the account is written. Merging on your own is not permission to skip a layer.
-- **It waits for approval:** hand over the account and wait.
+- **It waits for approval:** hand over the account and wait. Say what question the change waits on. When several changes are waiting, land them with [`land-together.md`](land-together.md).
 
 In a system that puts accuracy or audit first, `SYSTEM.md` may name changes that always wait for a person. Follow it.
 
@@ -45,7 +45,7 @@ The user is informed, not asked. The account is how they understand what happene
 
 ## 3. Watch
 
-The work is not finished at the merge. Stay with the change and observe what it does.
+The work is not finished at the merge. Stay with the change and observe what it does. Read the result of the release first: a release that was refused leaves the old version running, and the product then looks fine while the main branch cannot ship.
 
 Revert it when any of these happens, or anything `SYSTEM.md` lists as "not fine" for this system:
 

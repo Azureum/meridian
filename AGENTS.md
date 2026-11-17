@@ -65,6 +65,7 @@ Before a run starts, `node checks/preflight.mjs <repository>` must pass. Before 
 | Asked for something | [`playbooks/start-work.md`](playbooks/start-work.md) |
 | Splitting work across agents | [`playbooks/swarm.md`](playbooks/swarm.md) |
 | Done, and about to merge | [`playbooks/merge-and-watch.md`](playbooks/merge-and-watch.md) |
+| Landing several waiting changes | [`playbooks/land-together.md`](playbooks/land-together.md) |
 | Writing or changing code | [`practices/1-codebase.md`](practices/1-codebase.md) |
 | Working with types, lints, tests or CI | [`practices/2-static-analysis.md`](practices/2-static-analysis.md) |
 | Proving a change works | [`practices/3-verification.md`](practices/3-verification.md) |

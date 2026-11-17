@@ -83,6 +83,8 @@ An agent must be able to run what it changes: start the application, drive it, a
 - Put the commands that drive the application into small command-line tools kept with the project's skills. An agent then reuses one tested tool, and does not spend tokens working out the same steps again in every session.
 - Give those tools one entry point, a skill named `verify`, that starts the application and exercises a change the way this project needs. Every agent runs it before committing. It is the project's smoke test, so it is improved and tested like any other code.
 
+**The copy an agent runs must match what users get.** A local server or a test double stands in for the real platform. Whatever the platform adds in production, such as scripts it serves, headers it sets and routes it handles, the stand-in provides too, or the project lists what it leaves out. Otherwise exploration reports faults users never see, and the real ones are lost among them.
+
 A test of a whole flow, driven through the running application, is worth more than a test of one function. It is hard to satisfy by accident, and when it fails it shows the step, the screen and the error, where a unit test often shows only that something timed out. Write the flows from the feature map: each feature's file already lists what a user does and what should happen.
 
 ## User interfaces

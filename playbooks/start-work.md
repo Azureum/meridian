@@ -48,6 +48,7 @@ It runs what the repository lists in `.meridian/preflight.json`, which should co
 - **The repository, data and documents are present** and readable.
 - **The environment builds and the tests run.**
 - **Budget, time limit and permissions are set.**
+- **Every check the job needs can run from here.** One that only another machine can run is named now, with how long its queue is.
 
 When something fails, it reports every gap once, as a single list. Give that list to the user. The alternative is discovering each gap twenty steps in, one at a time.
 

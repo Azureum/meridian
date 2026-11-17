@@ -35,5 +35,6 @@ An agent reads the playbook for the step it is on, and nothing else from this la
 | Understanding the request, writing the job, preflight | [`playbooks/start-work.md`](../playbooks/start-work.md) |
 | Splitting the work, choosing agents, briefs, checkpoints | [`playbooks/swarm.md`](../playbooks/swarm.md) |
 | Merging, telling the user, watching, reverting | [`playbooks/merge-and-watch.md`](../playbooks/merge-and-watch.md) |
+| Several finished changes waiting at once | [`playbooks/land-together.md`](../playbooks/land-together.md) |
 
 Every step is read through the repository's `SYSTEM.md`: what matters most in this system sets how much is verified before a merge, what the agent may decide alone, and what counts as "not fine" afterwards. See [understand the system first](system.md).

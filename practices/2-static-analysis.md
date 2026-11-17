@@ -61,6 +61,7 @@ A lint is how a rule becomes a machine's rule. When you are about to write a sen
 
 - **Assert behaviour.** Call the code and check what it does. A test that reads a source file and matches a pattern in it pins the spelling of the implementation: it breaks on harmless edits and passes on broken behaviour.
 - **Do not copy the answer.** A test that repeats a constant from the code proves only that the two copies match.
+- **A pinned number says what a change would mean.** A test that expects an exact count, size or version fails on every intended change, and the habit of raising it by one is the habit of not reading it. Derive the number from its source, or state beside it what a rise would tell the reader, so that raising it is a decision.
 - **Every test file runs.** Tests are found by rule, not by a hand-kept list.
 - **A test that did not run has not passed.** A skip is reported as a skip, and fails the run where it was supposed to run.
 - **Fast enough to run before finishing.** Make tests independent so they can run side by side.
@@ -74,6 +75,7 @@ CI runs the whole loop on every change, on a clean machine, so that nothing depe
 - Every step of the loop is in CI: compile, build, lint, type-check, test.
 - CI runs on every change before it is merged, and again on the main branch.
 - A step must be able to fail. A step that ends in an unconditional success, or whose trigger can never fire, is not a check.
+- What the release would refuse is checked before the merge. The settings a host validates, the size and count limits it enforces and the files it expects are read by a check that runs with the tests. A fault that first shows when the main branch is released has passed every layer.
 - The main branch stays green. A red main branch hides every new failure behind the old ones, so fixing it comes before other work.
 - CI is fast enough to wait for. When it is slow, agents stop waiting and merge on hope.
 

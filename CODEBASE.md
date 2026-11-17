@@ -18,6 +18,7 @@ Where things are in this repository. Read this first.
 | `playbooks/start-work.md` | Understanding a request, writing the job, preflight |
 | `playbooks/swarm.md` | Splitting work across agents and choosing the agent for each chunk |
 | `playbooks/merge-and-watch.md` | Merging, telling the user, watching the result and reverting |
+| `playbooks/land-together.md` | Combining several waiting changes, verifying the combination and merging it once |
 | `playbooks/fast-ci.md` | Making a repository's CI fast without letting it lie |
 | `checks/all.mjs` | Runs the system, map, feature and scanner checks together |
 | `checks/scan.mjs` | Counts patterns the practices forbid; `--ratchet` stops a count rising |

@@ -32,7 +32,7 @@ Before any of it applies, an agent has to understand the system it is in and wha
 | [`AGENTS.md`](AGENTS.md) | What every session loads: the model, the few rules that need judgment, the checks, and what to read when |
 | [`SETUP.md`](SETUP.md) | What an agent does the first time it finds Meridian in a repository |
 | [`practices/`](practices/) | The reasoning: understanding the system, workflow, and one page per layer. Read when relevant |
-| [`playbooks/`](playbooks/) | What to do at one step of the work: starting, splitting across agents, merging, speeding up CI |
+| [`playbooks/`](playbooks/) | What to do at one step of the work: starting, splitting across agents, merging, landing several changes together, speeding up CI |
 | [`checks/`](checks/) | Scripts that hold everything a machine can check |
 | [`templates/`](templates/) | Starting files for a project |
 | [`CODEBASE.md`](CODEBASE.md) | Where things are in this repository |
